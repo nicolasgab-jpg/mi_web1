@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mi Web - programador_python</title>
+  <style>
+    :root{
+      --fondo:#0d0d0d;
+      --card:#1b1b1b;
+      --accent:#4db8ff;
+      --btn:#4db8ff;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Inter, Arial, sans-serif;
+      background:var(--fondo);
+      color:#fff;
+      -webkit-font-smoothing:antialiased;
+    }
+    header{
+      background:#121212;
+      padding:28px 20px;
+      text-align:center;
+      font-size:28px;
+      font-weight:700;
+      letter-spacing:0.4px;
+    }
+    .container{
+      width:92%;
+      max-width:1000px;
+      margin:18px auto;
+      padding-bottom:40px;
+    }
+    .section{
+      background:var(--card);
+      padding:18px;
+      margin-top:20px;
+      border-radius:12px;
+      box-shadow:0 6px 18px rgba(0,0,0,0.6);
+    }
+    h2{ color:var(--accent); margin-top:0; }
+    .flex{
+      display:flex; gap:12px; align-items:center; flex-wrap:wrap;
+    }
+    .button{
+      display:inline-block;
+      padding:10px 16px;
+      background:var(--btn);
+      color:#000;
+      font-weight:700;
+      border-radius:10px;
+      text-decoration:none;
+      transition:transform .12s;
+      cursor:pointer;
+    }
+    .button:hover{ transform:translateY(-3px) }
+    input[type="text"]{
+      width:100%;
+      padding:10px;
+      border-radius:8px;
+      border:1px solid rgba(255,255,255,0.06);
+      background:transparent;
+      color:white;
+      margin-top:8px;
+    }
+    label{ font-size:14px; color:#cfcfcf }
+    .row{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    @media(max-width:720px){ .row{ grid-template-columns:1fr } }
+    footer{ text-align:center; color:#999; margin-top:18px; font-size:13px }
+    .small{ font-size:14px; color:#d0d0d0 }
+    .mp-info{ margin-top:10px; background:#222; padding:10px; border-radius:8px; }
+  </style>
+</head>
+<body>
+
+  <header>Mi Página — <span style="color:var(--accent)">programador_python</span></header>
+
+  <div class="container">
+
+    <!-- SOBRE MÍ -->
+    <div class="section" id="sobre-mi">
+      <h2>Sobre mí</h2>
+      <p><strong>Nombre:</strong> Nicolas</p>
+      <p><strong>Edad:</strong> 14</p>
+      <p><strong>¿Qué estoy haciendo?</strong> Quiero seguir motivándome para estudiar Ingeniería Informática.</p>
+      <p><strong>Mi TikTok:</strong>
+        <a class="button" href="https://www.tiktok.com/@programador_python" target="_blank">@programador_python</a>
+      </p>
+    </div>
+
+    <!-- JUGAR -->
+    <div class="section" id="jugar">
+      <h2>Jugar mis videojuegos</h2>
+      <p class="small">Aquí podés entrar a mis juegos:</p>
+
+      <div style="display:flex; flex-direction:column; gap:12px;">
+        <div>
+          <input class="gameLinkInput" type="text" value="https://drive.google.com/drive/folders/1YIWLJbJGYODXYREHCYpEC3Z15qKSSsyv?usp=drive_link">
+          <a class="button openGameBtn" href="#" target="_blank">Abrir Juego</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- DONACIONES -->
+    <div class="section" id="donar">
+      <h2>Donaciones</h2>
+      <p>Si querés apoyarme, podés enviarme dinero con Mercado Pago usando estos datos 👇</p>
+
+      <div class="mp-info">
+        <p><strong>Alias:</strong> nicolas686</p>
+        <p><strong>CVU:</strong> 0000003100008385289472</p>
+        <p><strong>Nombre:</strong> Nicolás Gabriel Martinez</p>
+      </div>
+
+      <button class="button" id="copyAliasBtn">Copiar Alias</button>
+      <button class="button" id="copyCVUBtn">Copiar CVU</button>
+    </div>
+
+    <footer>
+      Hecho por Nicolas — ¡Sigue creando! 💻
+    </footer>
+  </div>
+
+  <script>
+    // Juegos
+    const gameButtons = document.querySelectorAll(".openGameBtn");
+    const gameInputs = document.querySelectorAll(".gameLinkInput");
+
+    gameButtons.forEach((btn, index) => {
+      btn.addEventListener("click", function(e){
+        const link = gameInputs[index].value.trim();
+        if(!link){
+          alert("Pegá el link de tu juego.");
+          e.preventDefault();
+          return;
+        }
+        this.href = link;
+      });
+    });
+
+    // Mercado Pago - copiar alias y CVU
+    document.getElementById("copyAliasBtn").addEventListener("click", () => {
+      navigator.clipboard.writeText("nicolas686").then(() => {
+        alert("Alias copiado al portapapeles ✅");
+      });
+    });
+
+    document.getElementById("copyCVUBtn").addEventListener("click", () => {
+      navigator.clipboard.writeText("0000003100008385289472").then(() => {
+        alert("CVU copiado al portapapeles ✅");
+      });
+    });
+  </script>
+</body>
+</html>
